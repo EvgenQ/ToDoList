@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ToDoList
 {
-	public class EnterNumberOperation
+	public class NumberOperation
 	{
 		public const int DISPLAY_LIST_TASKS  = 1;
 		public const int DELETE_TASK  = 3;

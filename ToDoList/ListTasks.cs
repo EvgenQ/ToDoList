@@ -72,21 +72,21 @@ namespace ToDoList
 		internal void Delete()
 		{
 			int numberOprations;
-			bool isSuccses;
-			string inputUser;
+			bool isSuccess;
+			string userInput;
 			do
 			{
 				GetTasksForEdit();
 				Console.Write("Выберите номер задачи: ");
-				inputUser = Console.ReadLine();
-				isSuccses = int.TryParse(inputUser, out int SuccsesnumberOprations);
-				if (SuccsesnumberOprations - 1 > countAdd || SuccsesnumberOprations == 0)
+				userInput = Console.ReadLine();
+				isSuccess = int.TryParse(userInput, out numberOprations);
+				if (numberOprations - 1 > countAdd || numberOprations == 0)
 				{
-					isSuccses = false;
+					isSuccess = false;
 				}
-				numberOprations = SuccsesnumberOprations - 1;
+				numberOprations -=  1;
 				Console.Clear();
-			} while (isSuccses == false);
+			} while (isSuccess == false);
 			AllTasks[numberOprations].Status = StatusTask.Done;
 			Console.WriteLine("Задача удалена из списка");
 			AllTasks[numberOprations] = null;
@@ -98,21 +98,21 @@ namespace ToDoList
 		internal void Done()
 		{
 			int numberOprations;
-			bool isSuccses;
-			string inputUser;
+			bool isSuccess;
+			string userInput;
 			do
 			{
 				GetTasksForEdit();
 				Console.Write("Выберите номер задачи: ");
-				inputUser = Console.ReadLine();
-				isSuccses = int.TryParse(inputUser, out int SuccsesnumberOprations);
-				if (SuccsesnumberOprations - 1 > countAdd || SuccsesnumberOprations == 0)
+				userInput = Console.ReadLine();
+				isSuccess = int.TryParse(userInput, out numberOprations);
+				if (numberOprations - 1 > countAdd || numberOprations == 0)
 				{
-					isSuccses = false;
+					isSuccess = false;
 				}
-				numberOprations = SuccsesnumberOprations - 1;
+				numberOprations -= 1;
 				Console.Clear();
-			} while (isSuccses == false);
+			} while (isSuccess == false);
 			AllTasks[numberOprations].Status = StatusTask.Done;
 			Console.WriteLine("Статус изменен на Выполненно.");
 			Console.WriteLine("Нажмите Enter для продолжения.");
@@ -123,22 +123,22 @@ namespace ToDoList
 		internal void Edit()
 		{
 			int numberOprations;
-			bool isSuccses;
-			string inputUser;
+			bool isSuccess;
+			string userInput;
 			do
 			{
 				GetTasksForEdit();
 				Console.Write("Выберите номер задачи: ");
-				inputUser = Console.ReadLine();
-				isSuccses = int.TryParse(inputUser, out int SuccsesnumberOprations);
-				if (SuccsesnumberOprations - 1 > countAdd || SuccsesnumberOprations == 0) 
+				userInput = Console.ReadLine();
+				isSuccess = int.TryParse(userInput, out numberOprations);
+				if (numberOprations - 1 > countAdd || numberOprations == 0) 
 				{
-					isSuccses = false;
+					isSuccess = false;
 				}
-				numberOprations = SuccsesnumberOprations - 1;
+				numberOprations -= 1;
 				Console.Clear();
-			} while (isSuccses == false);
-			isSuccses = false;
+			} while (isSuccess == false);
+			isSuccess = false;
 			do
 			{
 				Console.WriteLine($"Выбрана задача: №{numberOprations + 1} \n" +
@@ -148,10 +148,10 @@ namespace ToDoList
 				Console.WriteLine("Нажмите R для редактирования \"Названия\"\n" +
 								  "Нажмите S для редактирования \"Статуса\"");
 				Console.Write("Ожидание ввода от пользователя: ");
-				inputUser = Console.ReadLine().ToUpper();
-				if (inputUser == "R" || inputUser == "S")
+				userInput = Console.ReadLine().ToUpper();
+				if (userInput == "R" || userInput == "S")
 				{
-					isSuccses = true;
+					isSuccess = true;
 				}
 				else
 				{
@@ -159,8 +159,8 @@ namespace ToDoList
 					Console.ReadLine();
 				}
 				Console.Clear();
-			} while (isSuccses == false);
-			if (inputUser == "R") 
+			} while (isSuccess == false);
+			if (userInput == "R") 
 			{
 				Console.Write("Введите новое имя: ");
 				string newName = Console.ReadLine();
@@ -168,7 +168,7 @@ namespace ToDoList
 				AllTasks[numberOprations].NameTasks = newName;
 				Console.WriteLine($"на {AllTasks[numberOprations].NameTasks}");
 			}
-			if (inputUser == "S")
+			if (userInput == "S")
 			{
 				int numberStatus;
 				do
@@ -177,15 +177,15 @@ namespace ToDoList
 					Console.WriteLine("2 - InProcess");
 					Console.WriteLine("3 - New");
 					Console.Write("Введите новый статус: ");
-					inputUser = Console.ReadLine();
-					isSuccses = int.TryParse(inputUser, out int SuccsesnumberOprations);
-					if (SuccsesnumberOprations <= (int)StatusTask.Done || SuccsesnumberOprations > (int)StatusTask.New) 
+					userInput = Console.ReadLine();
+					isSuccess = int.TryParse(userInput, out numberOprations);
+					if (numberOprations <= (int)StatusTask.Done || numberOprations > (int)StatusTask.New) 
 					{
-						isSuccses = false;
+						isSuccess = false;
 					}
-					numberStatus = SuccsesnumberOprations - 1;
+					numberStatus = numberOprations - 1;
 					Console.Clear();
-				} while (isSuccses == false);
+				} while (isSuccess == false);
 				Console.Write($"Статус изменен с {AllTasks[numberOprations].Status} ");
 				if (numberStatus == 0)
 				{

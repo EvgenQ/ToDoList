@@ -4,7 +4,7 @@ namespace ToDoList
 {
 	class Program
 	{
-		static void PrintList(int countAdd) 
+		private static void PrintList(int countAdd) 
 		{
 			Console.WriteLine("1 - Вывести список задач");
 			Console.WriteLine("2 - Добавить задачу");
@@ -23,50 +23,49 @@ namespace ToDoList
 			while (exit)
 			{
 				int numberOprations;
-				bool isSuccses = false;
-				string inputUser;
+				bool isSuccess;
+				string userInput;
 				do
 				{
 					PrintList(countAddTasks);
 					Console.Write("Введите номер интересующей задачи из списка: ");
-					inputUser = Console.ReadLine();
-					isSuccses = int.TryParse(inputUser, out int SuccsesnumberOprations);
-					numberOprations = SuccsesnumberOprations;
+					userInput = Console.ReadLine();
+					isSuccess = int.TryParse(userInput, out numberOprations);
 					Console.Clear();
-				} while (isSuccses==false);
+				} while (isSuccess == false);
 				
 				switch (numberOprations)
 				{
-					case EnterNumberOperation.ADD_TASK:
+					case NumberOperation.ADD_TASK:
 						listTasks.Add();
 						countAddTasks++;
 						break;
 
-					case EnterNumberOperation.DELETE_TASK:
+					case NumberOperation.DELETE_TASK:
 						listTasks.Delete();
 						countAddTasks--;
 						break;
 
-					case EnterNumberOperation.DISPLAY_LIST_TASKS:
+					case NumberOperation.DISPLAY_LIST_TASKS:
 						PrintList(countAddTasks);
 						listTasks.GetTasks();
 						break;
 
-					case EnterNumberOperation.EDIT_TASK:
+					case NumberOperation.EDIT_TASK:
 						listTasks.Edit();
 						break;
 
-					case EnterNumberOperation.CANCEL_STATUS_TASK:
+					case NumberOperation.CANCEL_STATUS_TASK:
 						listTasks.Done();
 						break;
 
-					case EnterNumberOperation.EXIT:
+					case NumberOperation.EXIT:
 						exit = false;
 						break;
 
 					default:
 						Console.WriteLine("Ошибка при вводе задачи проверте что вы ввели!");
-						Console.WriteLine($"Вы ввели {inputUser}");
+						Console.WriteLine($"Вы ввели {userInput}");
 						break;
 				}
 			}
